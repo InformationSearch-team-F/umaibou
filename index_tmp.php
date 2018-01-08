@@ -1,8 +1,38 @@
-<!--
-* 物品管理DBがないバージョン, 決め打ち静的サイト
-* 物品管理DB対応バージョンはindex_tmp.php
+<?php
+/**
+ * 物品管理DB利用版
+ * Created by IntelliJ IDEA.
+ * User: reoh
+ * Date: 2018/01/08
+ * Time: 14:48
+ */
+$HOST="localhost";
+$DBNAME="umaibou_db";
+$USER="root";
+$PASS="pass";
 
--->
+
+/**
+ * テーブル名: items
+ * id   name
+ * 1    item1
+ * 2    item2
+ *
+ */
+
+// mysqliクラスのオブジェクトを作成
+$mysqli = new mysqli($HOST,$USER,$PASS,$DBNAME);
+if ($mysqli->connect_error) {    // connect_errorはPHP5.3.0以降で有効
+    die("connect_error!!　　" .  $mysqli->connect_error);
+}
+// 文字化け防止
+$mysqli->set_charset("utf8");
+?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -99,7 +129,6 @@
 								<a class="nav-link add-button" href="#"><i class="fa fa-plus-circle"></i> Add Listing</a>
 							</li>
 						</ul>
-                        </ul>
 					</div>
 				</nav>
 			</div>
@@ -139,7 +168,7 @@
 							</li>
 						</ul>
 					</div>-->
-					
+
 				</div>
 				<!-- Advance Search -->
 				<div class="advance-search">
@@ -155,9 +184,9 @@
 							</div>
 						</div>
 					</form>
-					
+
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -187,18 +216,33 @@
 
 		<div class="row">
 			<!-- offer 01 -->
-			<div class="col-sm-12 col-lg-3">
+            <? //新着商品を取り出す
+            // ？（パラメータマーカ）を用いたSELECT文のひな型をセット
+            $sql = "SELECT id, name FROM items WHERE id > ? AND id < ?";
+            // ステートメントハンドルを取得する
+            if ($stmt = $mysqli->prepare($sql)) {
+                $id1 = 2;    $id2 = 5;    // 次のbind_param()行と前後しても良い
+                // 条件値をSQLにバインドする
+                $stmt->bind_param("ii", $id1, $id2); //"ii"="int int"
+                // プリペアドステートメントを実行
+                $stmt->execute();
+                // 取得結果を変数にバインドする
+                $stmt->bind_result($id, $name);
+                // 値を取得
+                while ($stmt->fetch()) {
+                    $html=<<<EOT
+<div class="col-sm-12 col-lg-3">
 				<!-- product card -->
                 <div class="product-item bg-light">
                     <div class="card" style="min-height:40rem;">>
                         <div class="thumb-content">
                             <!-- <div class="price">$200</div> -->
-                            <a href="psvr.html">
+                            <a href="">
                                 <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
                             </a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="">PlayStation VR PlayStation Camera 同梱版</a></h4>
+                            <h4 class="card-title"><a href="">$id,$name</a></h4>
                             <ul class="list-inline product-meta">
                                 <li class="list-inline-item">
                                     <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
@@ -220,119 +264,18 @@
                         </div>
                     </div>
                 </div>
-
 			</div>
-			<div class="col-sm-12 col-lg-3">
-				<!-- product card -->
-<div class="product-item bg-light">
-	<div class="card" style="min-height:40rem;">
-		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="googlehome.html">
-				<img class="card-img-top img-fluid" src="images/products/products-2.jpg" alt="Card image cap">
-			</a>
-		</div>
-		<div class="card-body">
-		    <h4 class="card-title"><a href="">Google Home</a></h4>
-		    <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-calendar"></i>26th December</a>
-		    	</li>
-		    </ul>
-		    <p class="card-text">利用可能です。</p>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-		</div>
-	</div>
-</div>
+EOT;
+
+                    echo $html;
 
 
 
-			</div>
-			<div class="col-sm-12 col-lg-3">
-				<!-- product card -->
-<div class="product-item bg-light">
-	<div class="card" style="min-height:40rem;">>
-		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				<img class="card-img-top img-fluid" src="images/products/products-3.jpg" alt="Card image cap">
-			</a>
-		</div>
-		<div class="card-body">
-		    <h4 class="card-title"><a href="">マイクロソフト Surface Pro 4</a></h4>
-		    <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-calendar"></i>26th December</a>
-		    	</li>
-		    </ul>
-		    <p class="card-text">xxさんが1/15~2/9まで使用予定です。</p>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-		</div>
-	</div>
-</div>
-
-
-
-			</div>
-            <div class="col-sm-12 col-lg-3">
-                <!-- product card -->
-                <div class="product-item bg-light">
-                    <div class="card" style="min-height:40rem;">
-                        <div class="thumb-content">
-                            <!-- <div class="price">$200</div> -->
-                            <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-4.jpg" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="">ふつうのLinuxプログラミング 第2版 Linuxの仕組みから学べるgccプログラミングの王道</a></h4>
-                            <ul class="list-inline product-meta">
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-folder-open-o"></i>Books</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-calendar"></i>26th December</a>
-                                </li>
-                            </ul>
-                            <p class="card-text">xxさんが1/15~2/9まで使用予定です。</p>
-                            <div class="product-ratings">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
+                }
+                // ステートメントを閉じる
+                $stmt->close();
+            }
+            ?>
 
 		</div>
 
@@ -363,18 +306,33 @@
         </div>
         <div class="row">
             <!-- offer 01 -->
-            <div class="col-sm-12 col-lg-3">
-                <!-- product card -->
+            <? //人気商品を取り出す
+            // ？（パラメータマーカ）を用いたSELECT文のひな型をセット
+            $sql = "SELECT id, name FROM items WHERE id > ? AND id < ?";
+            // ステートメントハンドルを取得する
+            if ($stmt = $mysqli->prepare($sql)) {
+                $id1 = 2;    $id2 = 5;    // 次のbind_param()行と前後しても良い
+                // 条件値をSQLにバインドする
+                $stmt->bind_param("ii", $id1, $id2); //"ii"="int int"
+                // プリペアドステートメントを実行
+                $stmt->execute();
+                // 取得結果を変数にバインドする
+                $stmt->bind_result($id, $name);
+                // 値を取得
+                while ($stmt->fetch()) {
+                    $html=<<<EOT
+<div class="col-sm-12 col-lg-3">
+				<!-- product card -->
                 <div class="product-item bg-light">
-                    <div class="card" style="min-height:40rem;">
+                    <div class="card" style="min-height:40rem;">>
                         <div class="thumb-content">
                             <!-- <div class="price">$200</div> -->
-                            <a href="psvr.html">
+                            <a href="">
                                 <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
                             </a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="">PlayStation VR PlayStation Camera 同梱版<</a></h4>
+                            <h4 class="card-title"><a href="">$id,$name</a></h4>
                             <ul class="list-inline product-meta">
                                 <li class="list-inline-item">
                                     <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
@@ -396,121 +354,18 @@
                         </div>
                     </div>
                 </div>
+			</div>
+EOT;
+
+                    echo $html;
 
 
 
-            </div>
-            <div class="col-sm-12 col-lg-3">
-                <!-- product card -->
-                <div class="product-item bg-light">
-                    <div class="card" style="min-height:40rem;">
-                        <div class="thumb-content">
-                            <!-- <div class="price">$200</div> -->
-                            <a href="googlehome.html">
-                                <img class="card-img-top img-fluid" src="images/products/products-2.jpg" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="">Google Home</a></h4>
-                            <ul class="list-inline product-meta">
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-calendar"></i>26th December</a>
-                                </li>
-                            </ul>
-                            <p class="card-text">利用可能です。</p>
-                            <div class="product-ratings">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="col-sm-12 col-lg-3">
-                <!-- product card -->
-                <div class="product-item bg-light">
-                    <div class="card" style="min-height:40rem;">
-                        <div class="thumb-content">
-                            <!-- <div class="price">$200</div> -->
-                            <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-6.jpg" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="">Apple Watch Sport 42mm</a></h4>
-                            <ul class="list-inline product-meta">
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-calendar"></i>26th December</a>
-                                </li>
-                            </ul>
-                            <p class="card-text">利用可能です。</p>
-                            <div class="product-ratings">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="col-sm-12 col-lg-3">
-                <!-- product card -->
-                <div class="product-item bg-light">
-                    <div class="card" style="min-height:40rem;">
-                        <div class="thumb-content">
-                            <!-- <div class="price">$200</div> -->
-                            <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-5.jpg" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="">キングジム ラベルライター「テプラ」PRO SR670</a></h4>
-                            <ul class="list-inline product-meta">
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><i class="fa fa-calendar"></i>26th December</a>
-                                </li>
-                            </ul>
-                            <p class="card-text">利用可能です。</p>
-                            <div class="product-ratings">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
+                }
+                // ステートメントを閉じる
+                $stmt->close();
+            }
+            ?>
 
         </div>
     </div>
@@ -572,4 +427,7 @@
 </html>
 
 
-
+<?
+// DB接続を閉じる
+$mysqli->close();
+?>

@@ -1,10 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Umaibou-SYSTEM</title>
+  
+  <!-- PLUGINS CSS STYLE -->
+  <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <link href="plugins/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
 </head>
-<body>
-<h1>googlehomeと死蔵品をレコメンドするページ</h1>
+
+<body class="body-wrapper">
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-expand-lg  navigation">
+					<a class="navbar-brand" href="index.html">
+						<img src="images/logo.png" alt="">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav main-nav ">
+							<li class="nav-item active">
+								<a class="nav-link" href="index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="dashboard.html">Dashboard</a>
+							</li>
+							
+						</ul>
+						<ul class="navbar-nav ml-auto mt-10">
+							<li class="nav-item">
+								<a class="nav-link login-button" href="index.html">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link add-button" href="#"><i class="fa fa-plus-circle"></i> Add Listing</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="hero-area bg-1 text-center overly" style="padding: 20px 0 20px 0;">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Advance Search -->
+				<div class="advance-search" style="padding: 15px 15px; margin-bottom: 0px;">
+					<form action="#">
+						<div class="row">
+							<!-- Store Search -->
+							<div class="col-lg-30 col-md-12">
+								<div class="block d-flex">
+									<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
+									<!-- Search Button -->
+									<button class="btn btn-main" style="height: 50px;">SEARCH</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!--===================================
+=            Store Section            =
+====================================-->
+<section class="section bg-gray" style="padding: 40px 0;">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<!-- 本体 -->
+			<div class="col-md-8">
+				<div class="product-details">
+					<!-- 商品名とポイント -->
+					<div class="row">
+						<!-- 商品名 -->
+						<div class="col-md-8">
+							<h1 class="product-title" style="font-size: 35px;">Google Home</h1>
+							<div class="product-meta">
+								<ul class="list-inline">
+									<li class="list-inline-item"><i class="fa fa-calendar"></i> 購入日 <a href="">2017年12月28日</a></li>
+									<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> カテゴリ<a href="">Electronics</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- ポイント -->
+						<div class="col-md-4">
+							<div class="widget price text-center" style="padding: 5px;margin-bottom: 0px;">
+								<h4 style="margin-bottom: -.4rem; font-size: 12px;">Umaibou Point</h4>
+								<p>230</p>
+							</div>
+						</div>
+					</div>
+                    
+					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel" style="padding:10px 0">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img class="d-block w-100" src="images/products/products-2.jpg" alt="First slide">
+							</div>	
+						</div>
+					</div>
+
+					<div class="content" style="padding-top: 10px">
+                        <div class="tab-content" id="pills-tabContent">
+							<h3 class="tab-title">Product Description</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia laudantium beatae quod perspiciatis, neque dolores eos rerum, ipsa iste cum culpa numquam amet provident eveniet pariatur, sunt repellendus quas voluptate dolor cumque autem molestias. Ab quod quaerat molestias culpa eius, perferendis facere vitae commodi maxime qui numquam ex voluptatem voluptate, fuga sequi, quasi! Accusantium eligendi vitae unde iure officia amet molestiae velit assumenda, quidem beatae explicabo dolore laboriosam mollitia quod eos, eaque voluptas enim fuga laborum, error provident labore nesciunt ad. Libero reiciendis necessitatibus voluptates ab excepturi rem non, nostrum aut aperiam? Itaque, aut. Quas nulla perferendis neque eveniet ullam?</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam sed, officia reiciendis necessitatibus obcaecati eum, quaerat unde illo suscipit placeat nihil voluptatibus ipsa omnis repudiandae, excepturi! Id aperiam eius perferendis cupiditate exercitationem, mollitia numquam fuga, inventore quam eaque cumque fugiat, neque repudiandae dolore qui itaque iste asperiores ullam ut eum illum aliquam dignissimos similique! Aperiam aut temporibus optio nulla numquam molestias eum officia maiores aliquid laborum et officiis pariatur, delectus sapiente molestiae sit accusantium a libero, eligendi vero eius laboriosam minus. Nemo quibusdam nesciunt doloribus repellendus expedita necessitatibus velit vero?</p>
+							
+						</div>
+					</div>
+				</div>
+				<div style="margin-bottom: 20px;"></div>
+            </div>
+            <!-- 右メニュー -->
+			<div class="col-md-4">
+				<div class="sidebar">					
+					<!-- レコメンド -->
+					<div class="widget text-center" style="margin-bottom: 20px;">
+						<a href="check.html">
+							<h5 class="widget-header" style="margin-bottom: 10px;">android</h5>
+						</a>
+						<a href="check.html">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img class="d-block w-100" src="images/products/products-1.jpg" alt="First slide">
+								</div>
+							</div>
+							<div class="widget price text-center" style="padding: 5px;margin-bottom: 0px;">
+								<h4 style="margin-bottom: -.4rem; font-size: 12px;">あわせて</h4>
+								<p>230UP</p>
+							</div>
+						</a>
+					</div>
+
+					<!-- レコメンド -->
+					<div class="widget text-center" style="margin-bottom: 20px;">
+						<a href="check.html">
+							<h5 class="widget-header" style="margin-bottom: 10px;">ルンバ</h5>
+						</a>
+						<a href="check.html">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img class="d-block w-100" src="images/products/products-1.jpg" alt="First slide">
+								</div>
+							</div>
+							<div class="widget price text-center" style="padding: 5px;margin-bottom: 0px;">
+								<h4 style="margin-bottom: -.4rem; font-size: 12px;">あわせて</h4>
+								<p>230UP</p>
+							</div>
+						</a>
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+<!--============================
+=            Footer            =
+=============================-->
+
+<!-- Footer Bottom -->
+<footer class="footer-bottom">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-6 col-12">
+			<!-- Copyright -->
+			<div class="copyright">
+				<p>情報検索特論</p>
+				<p>Copyright © 2017. All Rights Reserved</p>
+			</div>
+		</div>
+		<div class="col-sm-6 col-12">
+			<!-- Social Icons -->
+			<ul class="social-media-icons text-right">
+				<li><a class="fa fa-facebook" href=""></a></li>
+				<li><a class="fa fa-twitter" href=""></a></li>
+				<li><a class="fa fa-pinterest-p" href=""></a></li>
+				<li><a class="fa fa-vimeo" href=""></a></li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	<!-- Container End -->
+	<!-- To Top -->
+	<div class="top-to">
+		<a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
+	</div>
+</footer>
+
+  <!-- JAVASCRIPTS -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="plugins/tether/js/tether.min.js"></script>
+  <script src="plugins/raty/jquery.raty-fa.js"></script>
+  <script src="plugins/bootstrap/dist/js/popper.min.js"></script>
+  <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="plugins/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+  <script src="plugins/slick-carousel/slick/slick.min.js"></script>
+  <script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+  <script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
+  <script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+  <script src="js/scripts.js"></script>
+
 </body>
+
 </html>
